@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-beige: #d4c7b9;
+    --color-cream: #f4f1ed;
+    --color-sage: #cad5c2;
+    --color-peach: #f7e3d0;
+    --color-pink: #f2d7e3;
+    --color-blue: #dde3ed;
+  }
+
+  body {
+    @apply bg-cream text-gray-800;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-colors;
+  }
+
+  .btn-primary {
+    @apply bg-sage text-gray-700 hover:bg-sage/80;
+  }
+
+  .btn-secondary {
+    @apply bg-peach text-gray-700 hover:bg-peach/80;
+  }
+
+  .btn-danger {
+    @apply bg-pink text-gray-700 hover:bg-pink/80;
+  }
+
+  .btn-extend {
+    @apply bg-soft-blue text-gray-700 hover:bg-soft-blue/80;
+  }
+
+  .input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage focus:border-transparent;
+  }
+
+  .select {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sage focus:border-transparent bg-white;
+  }
+}

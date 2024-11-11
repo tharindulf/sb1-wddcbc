@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Guardian {
+  id        String   @id @default(uuid())
+  name      String
+  mobile    String
+  type      String   // 'parent' or 'nanny'
+  visitCount Int     @default(0)
+  lastVisit DateTime @default(now())
+  kids      Kid[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([mobile])
+}
+
+model Kid {
+  id         String    @id @default(uuid())
+  name       String
+  age        Int
+  duration   Int       // in minutes
+  startTime  DateTime  @default(now())
+  endTime    DateTime?
+  guardian   Guardian  @relation(fields: [guardianId], references: [id])
+  guardianId String
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([guardianId])
+  @@index([startTime])
+}
